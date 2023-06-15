@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Location Form</title>
+  <style>
+    /* CSS for form */
+    .location-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      margin: 50px auto;
+      width: 400px;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+
+    .location-form label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .location-form select,
+    .location-form input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
+
+    .location-form .or-option {
+      text-align: center;
+    }
+
+    .coordinate-row {
+      display: flex;
+      justify-content: center;
+    }
+
+    .coordinate-column {
+      margin: 0 10px;
+    }
+
+    .location-form .coordinate-row label {
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .location-form .submit-button {
+      background-color: green;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+  </style>
+</head>
+<body>
+  <form class="location-form" method="POST" action="{% url 'location_grid' %}">
+    {% csrf_token %}
+    {% if all_location %}
+    {% for i in all_location %}
+    <label for="city">City:</label>
+    <select id="city" name="city">
+      <option value="{{i.city}}">{{ i.city }}</option>
+    </select>
+
+    <label for="location">Select Location:</label>
+    <select id="location" name="location">
+      <option value="{{i.location}}">{{i.location}} 1</option>
+    </select>
+    {% endfor %}
+    {% endif %}
+
+    <p class="or-option center">OR</p>
+
+    <div class="coordinate-row">
+      <div class="coordinate-column">
+        <label for="latitude">Latitude:</label>
+        <input type="text" id="latitude" name="latitude" placeholder="Enter latitude">
+      </div>
+      <div class="coordinate-column">
+        <label for="longitude">Longitude:</label>
+        <input type="text" id="longitude" name="longitude" placeholder="Enter longitude">
+      </div>
+    </div>
+
+    <button type="submit" class="submit-button">Submit</button>
+  </form>
+</body>
+</html>

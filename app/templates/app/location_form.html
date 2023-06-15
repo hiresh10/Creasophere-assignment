@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Location Grid</title>
+  <style>
+    /* CSS for location grid */
+    .location-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-gap: 20px;
+      margin: 50px auto;
+      max-width: 800px;
+    }
+
+    .location-card {
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
+
+    .location-card h3 {
+      margin-top: 0;
+    }
+
+    .location-card p {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="location-grid">
+    {% for location in locations %}
+      <div class="location-card">
+        <h3>{{ location.project_name }}</h3>
+        <p>City: {{ location.city }}</p>
+        <p>Location: {{ location.location }}</p>
+        <!-- Additional fields or information you want to display -->
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
